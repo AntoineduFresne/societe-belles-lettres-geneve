@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="revue.page.title">La Nouvelle Revue - Société de Belles-Lettres Genève</title>
+    <meta name="description" content="Découvrez la Nouvelle Revue de Belles-Lettres, un espace d'expression poétique et artistique des membres." data-i18n="revue.page.description">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/logo/favicon.ico">
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Feuilles de style -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/language-switch.css">
+</head>
+<body>
+    <!-- Notice langue de genre -->
+    <div class="language-gender-notice">
+        <p data-i18n="language.gender.notice">Ce site utilise le français comme langue de genre.</p>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo/logo-belles-lettres-geneve.png" alt="Logo Société de Belles-Lettres Genève" data-i18n-alt="logo.alt">
+                    </a>
+                </div>
+                
+                <div class="language-switch">
+                    <select id="language-selector" class="language-selector">
+                        <option value="fr">Français</option>
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                        <option value="it">Italiano</option>
+                    </select>
+                </div>
+                
+                <button class="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                        <li><a href="histoire.html" data-i18n="nav.history">Histoire</a></li>
+                        <li><a href="presentation.html" data-i18n="nav.presentation">Présentation</a></li>
+                        <li><a href="valeurs.html" data-i18n="nav.values">Valeurs</a></li>
+                        <li><a href="archives.html" data-i18n="nav.archives">Archives</a></li>
+                        <li><a href="photos.html" data-i18n="nav.photos">Photos</a></li>
+                        <li><a href="revue.html" class="active" data-i18n="nav.revue">La Nouvelle Revue</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 60vh;">
+        <div class="hero-background" style="background-image: url('images/background/revue-background.jpg');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title fade-in" data-i18n="revue.hero.title">La Nouvelle Revue de Belles-Lettres</h1>
+            <p class="hero-subtitle fade-in" data-i18n="revue.hero.subtitle">Expression poétique et artistique des membres</p>
+        </div>
+    </section>
+
+    <!-- Présentation Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll" data-i18n="revue.presentation.title">Présentation de la Revue</h2>
+            <div class="content-block animate-on-scroll">
+                <p data-i18n="revue.presentation.text1">La Nouvelle Revue de Belles-Lettres est un espace d'expression libre où les membres de notre société partagent leurs créations littéraires, poétiques et artistiques.</p>
+                <p data-i18n="revue.presentation.text2">Ces textes n'ont aucun but scientifique, littéraire ou de revendication d'originalité. Ils sont simplement des compilations poétiques, une expression de beauté et d'idées, et ne sont pas monétisables.</p>
+                <p data-i18n="revue.presentation.text3">Nous vous invitons à découvrir ces œuvres qui reflètent la diversité de pensée et la richesse créative de nos membres.</p>
+            </div>
+            <div class="disclaimer-box animate-on-scroll">
+                <h3 data-i18n="revue.disclaimer.title">Note importante</h3>
+                <p data-i18n="revue.disclaimer.text">Les textes et œuvres présentés dans cette section sont des expressions personnelles des membres de la Société de Belles-Lettres Genève. Ils n'ont aucune prétention scientifique ou littéraire et ne sont pas destinés à être monétisés. Ils représentent simplement un espace d'expression artistique et poétique.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="section" style="background-color: #f8f8f8;">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll" data-i18n="revue.publications.title">Publications récentes</h2>
+            <div class="publications-grid">
+                <!-- Les publications seront ajoutées ici par les administrateurs du site -->
+                <div class="publication-card animate-on-scroll">
+                    <div class="publication-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="publication-info">
+                        <h3 data-i18n="revue.publications.example1.title">Exemple de publication</h3>
+                        <p class="publication-author" data-i18n="revue.publications.example1.author">Par [Nom de l'auteur]</p>
+                        <p class="publication-date" data-i18n="revue.publications.example1.date">Publié le [Date]</p>
+                        <p data-i18n="revue.publications.example1.description">Description brève de cette publication. Les administrateurs du site pourront ajouter ici de véritables publications au fur et à mesure.</p>
+                        <a href="#" class="btn btn-outline" data-i18n="revue.publications.download">Télécharger le PDF</a>
+                    </div>
+                </div>
+                <div class="publication-card animate-on-scroll">
+                    <div class="publication-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="publication-info">
+                        <h3 data-i18n="revue.publications.example2.title">Exemple de publication</h3>
+                        <p class="publication-author" data-i18n="revue.publications.example2.author">Par [Nom de l'auteur]</p>
+                        <p class="publication-date" data-i18n="revue.publications.example2.date">Publié le [Date]</p>
+                        <p data-i18n="revue.publications.example2.description">Description brève de cette publication. Les administrateurs du site pourront ajouter ici de véritables publications au fur et à mesure.</p>
+                        <a href="#" class="btn btn-outline" data-i18n="revue.publications.download">Télécharger le PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribution Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll" data-i18n="revue.contribution.title">Comment contribuer</h2>
+            <div class="content-block animate-on-scroll">
+                <p data-i18n="revue.contribution.text1">La Nouvelle Revue de Belles-Lettres est ouverte aux contributions de tous les membres de la société.</p>
+                <p data-i18n="revue.contribution.text2">Si vous souhaitez partager vos créations, veuillez contacter le comité éditorial via le formulaire de contact en précisant votre intention de contribuer à la revue.</p>
+                <p data-i18n="revue.contribution.text3">Tous les formats sont acceptés (poèmes, essais, nouvelles, dessins, etc.) tant qu'ils peuvent être présentés sous forme de PDF.</p>
+                <div class="text-center">
+                    <a href="contact.html" class="btn" data-i18n="revue.contribution.contact">Contacter le comité éditorial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="images/logo/logo-belles-lettres-geneve-white.png" alt="Logo Société de Belles-Lettres Genève" data-i18n-alt="logo.alt">
+                    <p data-i18n="footer.description">La Société de Belles-Lettres Genève est une société d'étudiants qui incarne l'esprit genevois depuis [ANNÉE].</p>
+                </div>
+                <div class="footer-nav">
+                    <h4 data-i18n="footer.navigation">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                        <li><a href="histoire.html" data-i18n="nav.history">Histoire</a></li>
+                        <li><a href="presentation.html" data-i18n="nav.presentation">Présentation</a></li>
+                        <li><a href="valeurs.html" data-i18n="nav.values">Valeurs</a></li>
+                        <li><a href="archives.html" data-i18n="nav.archives">Archives</a></li>
+                        <li><a href="photos.html" data-i18n="nav.photos">Photos</a></li>
+                        <li><a href="revue.html" data-i18n="nav.revue">La Nouvelle Revue</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4 data-i18n="footer.follow">Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">&copy; 2025 Société de Belles-Lettres Genève. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/i18n.js"></script>
+</body>
+</html>

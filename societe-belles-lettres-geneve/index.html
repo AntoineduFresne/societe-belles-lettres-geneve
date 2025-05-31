@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Société de Belles-Lettres Genève</title>
-    <meta name="description" content="Site officiel de la Société de Belles-Lettres Genève, une société d'étudiants qui incarne l'esprit genevois.">
+    <title data-i18n="home.page.title">Société de Belles-Lettres Genève</title>
+    <meta name="description" content="Site officiel de la Société de Belles-Lettres Genève, une société d'étudiants qui incarne l'esprit genevois." data-i18n="home.page.description">
     
     <!-- Favicon -->
     <link rel="icon" href="images/logo/favicon.ico">
@@ -21,16 +21,31 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/language-switch.css">
 </head>
 <body>
+    <!-- Notice langue de genre -->
+    <div class="language-gender-notice">
+        <p data-i18n="language.gender.notice">Ce site utilise le français comme langue de genre.</p>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-container">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="images/logo/logo-belles-lettres-geneve.png" alt="Logo Société de Belles-Lettres Genève">
+                        <img src="images/logo/logo-belles-lettres-geneve.png" alt="Logo Société de Belles-Lettres Genève" data-i18n-alt="logo.alt">
                     </a>
+                </div>
+                
+                <div class="language-switch">
+                    <select id="language-selector" class="language-selector">
+                        <option value="fr">Français</option>
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                        <option value="it">Italiano</option>
+                    </select>
                 </div>
                 
                 <button class="nav-toggle">
@@ -39,13 +54,13 @@
                 
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="index.html" class="active">Accueil</a></li>
-                        <li><a href="histoire.html">Histoire</a></li>
-                        <li><a href="presentation.html">Présentation</a></li>
-                        <li><a href="valeurs.html">Valeurs</a></li>
-                        <li><a href="archives.html">Archives</a></li>
-                        <li><a href="photos.html">Photos</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
+                        <li><a href="histoire.html" data-i18n="nav.history">Histoire</a></li>
+                        <li><a href="presentation.html" data-i18n="nav.presentation">Présentation</a></li>
+                        <li><a href="valeurs.html" data-i18n="nav.values">Valeurs</a></li>
+                        <li><a href="archives.html" data-i18n="nav.archives">Archives</a></li>
+                        <li><a href="photos.html" data-i18n="nav.photos">Photos</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -57,11 +72,11 @@
         <div class="hero-background" style="background-image: url('images/background/hero-background.jpg');"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title fade-in">Société de Belles-Lettres Genève</h1>
-            <p class="hero-subtitle fade-in">Une société d'étudiants qui incarne l'esprit genevois depuis [ANNÉE]</p>
+            <h1 class="hero-title fade-in" data-i18n="home.hero.title">Société de Belles-Lettres Genève</h1>
+            <p class="hero-subtitle fade-in" data-i18n="home.hero.subtitle">Une société d'étudiants qui incarne l'esprit genevois depuis [ANNÉE]</p>
             <div class="hero-buttons fade-in">
-                <a href="presentation.html" class="btn">Découvrir</a>
-                <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+                <a href="presentation.html" class="btn" data-i18n="home.hero.discover">Découvrir</a>
+                <a href="contact.html" class="btn btn-outline" data-i18n="home.hero.contact">Nous contacter</a>
             </div>
         </div>
     </section>
@@ -69,16 +84,16 @@
     <!-- About Section -->
     <section class="section about">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Présentation</h2>
+            <h2 class="section-title animate-on-scroll" data-i18n="home.about.title">Présentation</h2>
             <div class="about-content">
                 <div class="about-text animate-on-scroll">
-                    <p>La Société de Belles-Lettres Genève est une société d'étudiants fondée en [ANNÉE] qui rassemble des étudiants de toutes les facultés autour de valeurs communes.</p>
-                    <p>Notre société encourage l'esprit critique sur le plan politique, économique, social et culturel, et cultive l'amitié entre ses membres. Notre devise est [DEVISE].</p>
-                    <p>Belles-Lettres Genève offre un cadre stimulant intellectuellement où développer son esprit critique en débattant et partageant ses opinions, tout en créant des amitiés à vie avec des étudiants qui partagent des valeurs communes malgré la diversité d'opinions.</p>
-                    <a href="presentation.html" class="btn">En savoir plus</a>
+                    <p data-i18n="home.about.text1">La Société de Belles-Lettres Genève est une société d'étudiants fondée en [ANNÉE] qui rassemble des étudiants de toutes les facultés autour de valeurs communes.</p>
+                    <p data-i18n="home.about.text2">Notre société encourage l'esprit critique sur le plan politique, économique, social et culturel, et cultive l'amitié entre ses membres. Notre devise est [DEVISE].</p>
+                    <p data-i18n="home.about.text3">Belles-Lettres Genève offre un cadre stimulant intellectuellement où développer son esprit critique en débattant et partageant ses opinions, tout en créant des amitiés à vie avec des étudiants qui partagent des valeurs communes malgré la diversité d'opinions.</p>
+                    <a href="presentation.html" class="btn" data-i18n="home.about.more">En savoir plus</a>
                 </div>
                 <div class="about-image animate-on-scroll">
-                    <img src="images/background/about-image.jpg" alt="Membres de la Société de Belles-Lettres Genève">
+                    <img src="images/background/about-image.jpg" alt="Membres de la Société de Belles-Lettres Genève" data-i18n-alt="home.about.image.alt">
                 </div>
             </div>
         </div>
@@ -87,39 +102,39 @@
     <!-- Values Section -->
     <section class="section values">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Nos valeurs</h2>
+            <h2 class="section-title animate-on-scroll" data-i18n="home.values.title">Nos valeurs</h2>
             <div class="values-grid">
                 <div class="value-card animate-on-scroll">
                     <div class="value-icon">
                         <i class="fas fa-book"></i>
                     </div>
-                    <h3 class="value-title">Culture</h3>
-                    <p>Nous promouvons l'enrichissement intellectuel et culturel à travers des débats, conférences et activités littéraires.</p>
+                    <h3 class="value-title" data-i18n="home.values.culture.title">Culture</h3>
+                    <p data-i18n="home.values.culture.text">Nous promouvons l'enrichissement intellectuel et culturel à travers des débats, conférences et activités littéraires.</p>
                 </div>
                 <div class="value-card animate-on-scroll">
                     <div class="value-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
-                    <h3 class="value-title">Amitié</h3>
-                    <p>Nous cultivons des liens d'amitié durables entre nos membres, créant un réseau de soutien qui perdure bien au-delà des études.</p>
+                    <h3 class="value-title" data-i18n="home.values.friendship.title">Amitié</h3>
+                    <p data-i18n="home.values.friendship.text">Nous cultivons des liens d'amitié durables entre nos membres, créant un réseau de soutien qui perdure bien au-delà des études.</p>
                 </div>
                 <div class="value-card animate-on-scroll">
                     <div class="value-icon">
                         <i class="fas fa-landmark"></i>
                     </div>
-                    <h3 class="value-title">Tradition</h3>
-                    <p>Nous perpétuons des traditions riches en histoire tout en les adaptant aux réalités contemporaines.</p>
+                    <h3 class="value-title" data-i18n="home.values.tradition.title">Tradition</h3>
+                    <p data-i18n="home.values.tradition.text">Nous perpétuons des traditions riches en histoire tout en les adaptant aux réalités contemporaines.</p>
                 </div>
                 <div class="value-card animate-on-scroll">
                     <div class="value-icon">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h3 class="value-title">Dialogue</h3>
-                    <p>Nous encourageons l'échange d'idées et le débat constructif dans un esprit d'ouverture et de respect mutuel.</p>
+                    <h3 class="value-title" data-i18n="home.values.dialogue.title">Dialogue</h3>
+                    <p data-i18n="home.values.dialogue.text">Nous encourageons l'échange d'idées et le débat constructif dans un esprit d'ouverture et de respect mutuel.</p>
                 </div>
             </div>
             <div class="text-center animate-on-scroll">
-                <a href="valeurs.html" class="btn">Découvrir nos valeurs</a>
+                <a href="valeurs.html" class="btn" data-i18n="home.values.discover">Découvrir nos valeurs</a>
             </div>
         </div>
     </section>
@@ -127,35 +142,35 @@
     <!-- Gallery Section -->
     <section class="section gallery">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Galerie photos</h2>
+            <h2 class="section-title animate-on-scroll" data-i18n="home.gallery.title">Galerie photos</h2>
             <div class="gallery-grid">
                 <div class="gallery-item animate-on-scroll">
-                    <img src="images/gallery/gallery-1.jpg" alt="Événement Belles-Lettres" class="gallery-image">
+                    <img src="images/gallery/gallery-1.jpg" alt="Événement Belles-Lettres" class="gallery-image" data-i18n-alt="home.gallery.event.alt">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">Événement annuel</h3>
+                        <h3 class="gallery-title" data-i18n="home.gallery.event">Événement annuel</h3>
                     </div>
                 </div>
                 <div class="gallery-item animate-on-scroll">
-                    <img src="images/gallery/gallery-2.jpg" alt="Réunion des membres" class="gallery-image">
+                    <img src="images/gallery/gallery-2.jpg" alt="Réunion des membres" class="gallery-image" data-i18n-alt="home.gallery.meeting.alt">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">Réunion des membres</h3>
+                        <h3 class="gallery-title" data-i18n="home.gallery.meeting">Réunion des membres</h3>
                     </div>
                 </div>
                 <div class="gallery-item animate-on-scroll">
-                    <img src="images/gallery/gallery-3.jpg" alt="Conférence" class="gallery-image">
+                    <img src="images/gallery/gallery-3.jpg" alt="Conférence" class="gallery-image" data-i18n-alt="home.gallery.conference.alt">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">Conférence</h3>
+                        <h3 class="gallery-title" data-i18n="home.gallery.conference">Conférence</h3>
                     </div>
                 </div>
                 <div class="gallery-item animate-on-scroll">
-                    <img src="images/gallery/gallery-4.jpg" alt="Cérémonie" class="gallery-image">
+                    <img src="images/gallery/gallery-4.jpg" alt="Cérémonie" class="gallery-image" data-i18n-alt="home.gallery.ceremony.alt">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">Cérémonie</h3>
+                        <h3 class="gallery-title" data-i18n="home.gallery.ceremony">Cérémonie</h3>
                     </div>
                 </div>
             </div>
             <div class="text-center animate-on-scroll">
-                <a href="photos.html" class="btn">Voir toutes les photos</a>
+                <a href="photos.html" class="btn" data-i18n="home.gallery.more">Voir toutes les photos</a>
             </div>
         </div>
     </section>
@@ -163,7 +178,7 @@
     <!-- Contact Section -->
     <section class="section contact">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Contact</h2>
+            <h2 class="section-title animate-on-scroll" data-i18n="home.contact.title">Contact</h2>
             <div class="contact-container">
                 <div class="contact-info animate-on-scroll">
                     <div class="contact-item">
@@ -171,7 +186,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-details">
-                            <h4>Adresse</h4>
+                            <h4 data-i18n="home.contact.address.title">Adresse</h4>
                             <p>[Adresse de la Société de Belles-Lettres Genève]</p>
                         </div>
                     </div>
@@ -180,7 +195,7 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-details">
-                            <h4>Email</h4>
+                            <h4 data-i18n="home.contact.email.title">Email</h4>
                             <p>contact@belles-lettres-geneve.ch</p>
                         </div>
                     </div>
@@ -189,7 +204,7 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="contact-details">
-                            <h4>Téléphone</h4>
+                            <h4 data-i18n="home.contact.phone.title">Téléphone</h4>
                             <p>[Numéro de téléphone]</p>
                         </div>
                     </div>
@@ -198,7 +213,7 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="contact-details">
-                            <h4>Horaires</h4>
+                            <h4 data-i18n="home.contact.hours.title">Horaires</h4>
                             <p>[Horaires de disponibilité]</p>
                         </div>
                     </div>
@@ -206,18 +221,18 @@
                 <div class="contact-form animate-on-scroll">
                     <form action="#" method="post">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nom complet" required>
+                            <input type="text" class="form-control" placeholder="Nom complet" required data-i18n-placeholder="home.contact.form.name">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" required>
+                            <input type="email" class="form-control" placeholder="Email" required data-i18n-placeholder="home.contact.form.email">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Sujet">
+                            <input type="text" class="form-control" placeholder="Sujet" data-i18n-placeholder="home.contact.form.subject">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Message" required></textarea>
+                            <textarea class="form-control" placeholder="Message" required data-i18n-placeholder="home.contact.form.message"></textarea>
                         </div>
-                        <button type="submit" class="btn">Envoyer</button>
+                        <button type="submit" class="btn" data-i18n="home.contact.form.submit">Envoyer</button>
                     </form>
                 </div>
             </div>
@@ -229,23 +244,23 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-logo">
-                    <img src="images/logo/logo-belles-lettres-geneve-white.png" alt="Logo Société de Belles-Lettres Genève">
-                    <p>La Société de Belles-Lettres Genève est une société d'étudiants qui incarne l'esprit genevois depuis [ANNÉE].</p>
+                    <img src="images/logo/logo-belles-lettres-geneve-white.png" alt="Logo Société de Belles-Lettres Genève" data-i18n-alt="logo.alt">
+                    <p data-i18n="footer.description">La Société de Belles-Lettres Genève est une société d'étudiants qui incarne l'esprit genevois depuis [ANNÉE].</p>
                 </div>
                 <div class="footer-nav">
-                    <h4>Navigation</h4>
+                    <h4 data-i18n="footer.navigation">Navigation</h4>
                     <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="histoire.html">Histoire</a></li>
-                        <li><a href="presentation.html">Présentation</a></li>
-                        <li><a href="valeurs.html">Valeurs</a></li>
-                        <li><a href="archives.html">Archives</a></li>
-                        <li><a href="photos.html">Photos</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                        <li><a href="histoire.html" data-i18n="nav.history">Histoire</a></li>
+                        <li><a href="presentation.html" data-i18n="nav.presentation">Présentation</a></li>
+                        <li><a href="valeurs.html" data-i18n="nav.values">Valeurs</a></li>
+                        <li><a href="archives.html" data-i18n="nav.archives">Archives</a></li>
+                        <li><a href="photos.html" data-i18n="nav.photos">Photos</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
-                    <h4>Suivez-nous</h4>
+                    <h4 data-i18n="footer.follow">Suivez-nous</h4>
                     <div class="social-links">
                         <a href="#" class="social-link" target="_blank" aria-label="Facebook">
                             <i class="fab fa-facebook-f"></i>
@@ -263,7 +278,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Société de Belles-Lettres Genève. Tous droits réservés.</p>
+                <p data-i18n="footer.copyright">&copy; 2025 Société de Belles-Lettres Genève. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -271,5 +286,6 @@
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/slider.js"></script>
+    <script src="js/i18n.js"></script>
 </body>
 </html>
