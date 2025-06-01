@@ -1,0 +1,50 @@
+.language-switch {
+    margin-right: 20px;
+    position: relative;
+}
+
+.language-selector {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6"><path fill="white" d="M0 0l6 6 6-6z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.language-selector:hover {
+    background-color: var(--secondary-color);
+}
+
+.language-selector:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.language-gender-notice {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-i18n] {
+    transition: opacity 0.2s ease;
+}
+
+.language-changing [data-i18n] {
+    opacity: 0.5;
+}

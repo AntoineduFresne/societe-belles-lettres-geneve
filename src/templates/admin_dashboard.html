@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Société de Belles-Lettres Genève</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/logo/favicon.ico') }}">
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Feuilles de style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/language-switch.css') }}">
+    <style>
+        .admin-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-title {
+            margin: 0;
+            font-size: 24px;
+        }
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+        }
+        .admin-btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .admin-btn:hover {
+            background-color: #f0f0f0;
+        }
+        .admin-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .admin-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .admin-section-title {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .form-group textarea {
+            min-height: 100px;
+        }
+        .language-tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .language-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 4px 4px 0 0;
+        }
+        .language-tab.active {
+            background-color: #f8f8f8;
+            border-color: #ddd;
+        }
+        .language-content {
+            display: none;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 0 0 4px 4px;
+            margin-bottom: 20px;
+        }
+        .language-content.active {
+            display: block;
+        }
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+        }
+        .publications-list {
+            margin-top: 30px;
+        }
+        .publication-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        .publication-info {
+            flex: 1;
+        }
+        .publication-title {
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+        .publication-meta {
+            font-size: 14px;
+            color: #666;
+        }
+        .publication-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+        .flash-message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .no-publications {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <h1 class="admin-title">Tableau de bord administrateur</h1>
+        <div class="admin-actions">
+            <a href="{{ url_for('index') }}" class="admin-btn">Voir le site</a>
+            <a href="{{ url_for('logout') }}" class="admin-btn">Déconnexion</a>
+        </div>
+    </div>
+    
+    <div class="admin-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="admin-section">
+            <h2 class="admin-section-title">Ajouter une nouvelle publication</h2>
+            <form action="{{ url_for('admin_upload') }}" method="POST" enctype="multipart/form-data">
+                <div class="language-tabs">
+                    <div class="language-tab active" data-lang="fr">Français</div>
+                    <div class="language-tab" data-lang="en">English</div>
+                    <div class="language-tab" data-lang="de">Deutsch</div>
+                    <div class="language-tab" data-lang="it">Italiano</div>
+                </div>
+                
+                <!-- Français -->
+                <div class="language-content active" id="lang-fr">
+                    <div class="form-group">
+                        <label for="title_fr">Titre (Français)</label>
+                        <input type="text" id="title_fr" name="title_fr" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="author_fr">Auteur (Français)</label>
+                        <input type="text" id="author_fr" name="author_fr" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description_fr">Description (Français)</label>
+                        <textarea id="description_fr" name="description_fr" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- English -->
+                <div class="language-content" id="lang-en">
+                    <div class="form-group">
+                        <label for="title_en">Titre (Anglais)</label>
+                        <input type="text" id="title_en" name="title_en" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="author_en">Auteur (Anglais)</label>
+                        <input type="text" id="author_en" name="author_en" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description_en">Description (Anglais)</label>
+                        <textarea id="description_en" name="description_en" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- Deutsch -->
+                <div class="language-content" id="lang-de">
+                    <div class="form-group">
+                        <label for="title_de">Titre (Allemand)</label>
+                        <input type="text" id="title_de" name="title_de" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="author_de">Auteur (Allemand)</label>
+                        <input type="text" id="author_de" name="author_de" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description_de">Description (Allemand)</label>
+                        <textarea id="description_de" name="description_de" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- Italiano -->
+                <div class="language-content" id="lang-it">
+                    <div class="form-group">
+                        <label for="title_it">Titre (Italien)</label>
+                        <input type="text" id="title_it" name="title_it" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="author_it">Auteur (Italien)</label>
+                        <input type="text" id="author_it" name="author_it" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description_it">Description (Italien)</label>
+                        <textarea id="description_it" name="description_it" required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pdf_file">Fichier PDF</label>
+                    <input type="file" id="pdf_file" name="pdf_file" accept=".pdf" required>
+                </div>
+                
+                <button type="submit" class="btn-submit">Ajouter la publication</button>
+            </form>
+        </div>
+        
+        <div class="admin-section">
+            <h2 class="admin-section-title">Publications existantes</h2>
+            
+            <div class="publications-list">
+                {% if publications %}
+                    {% for pub in publications %}
+                        <div class="publication-item">
+                            <div class="publication-info">
+                                <h3 class="publication-title">{{ pub.title.fr }}</h3>
+                                <div class="publication-meta">
+                                    <span>{{ pub.author.fr }}</span> | <span>{{ pub.date }}</span>
+                                </div>
+                            </div>
+                            <div class="publication-actions">
+                                <a href="{{ url_for('download_file', filename=pub.filename) }}" class="admin-btn" target="_blank">Voir le PDF</a>
+                                <form action="{{ url_for('admin_delete', publication_id=pub.id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette publication ?');">
+                                    <button type="submit" class="btn-delete">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-publications">
+                        <p>Aucune publication n'a été ajoutée pour le moment.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Language tabs functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.language-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all content
+                    document.querySelectorAll('.language-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show content for selected language
+                    const lang = this.getAttribute('data-lang');
+                    document.getElementById('lang-' + lang).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

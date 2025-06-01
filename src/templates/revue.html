@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('language', 'fr') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('revue.page.title', 'La Nouvelle Revue - Société de Belles-Lettres Genève') }}</title>
+    <meta name="description" content="{{ _('revue.page.description', 'Découvrez la Nouvelle Revue de Belles-Lettres, un espace d\'expression poétique et artistique des membres.') }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/logo/favicon.ico') }}">
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Feuilles de style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/language-switch.css') }}">
+    <style>
+        .publication-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        
+        .publication-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .publication-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .publication-info {
+            flex: 1;
+        }
+        
+        .publication-info h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .publication-author, .publication-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .publication-description {
+            margin: 15px 0;
+        }
+        
+        .disclaimer-box {
+            background-color: #f8f8f8;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .disclaimer-box h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .no-publications {
+            text-align: center;
+            padding: 50px 0;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Notice langue de genre -->
+    <div class="language-gender-notice">
+        <p>{{ _('language.gender.notice', 'Ce site utilise le français comme langue de genre.') }}</p>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="{{ url_for('index') }}">
+                        <img src="{{ url_for('static', filename='images/logo/logo-belles-lettres-geneve.png') }}" alt="{{ _('logo.alt', 'Logo Société de Belles-Lettres Genève') }}">
+                    </a>
+                </div>
+                
+                <div class="language-switch">
+                    <select id="language-selector" class="language-selector" onchange="window.location.href='{{ url_for('set_language', language='') }}' + this.value">
+                        {% for code, name in languages.items() %}
+                            <option value="{{ code }}" {% if code == current_language %}selected{% endif %}>{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <button class="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">{{ _('nav.home', 'Accueil') }}</a></li>
+                        <li><a href="{{ url_for('histoire') }}">{{ _('nav.history', 'Histoire') }}</a></li>
+                        <li><a href="{{ url_for('presentation') }}">{{ _('nav.presentation', 'Présentation') }}</a></li>
+                        <li><a href="{{ url_for('valeurs') }}">{{ _('nav.values', 'Valeurs') }}</a></li>
+                        <li><a href="{{ url_for('archives') }}">{{ _('nav.archives', 'Archives') }}</a></li>
+                        <li><a href="{{ url_for('photos') }}">{{ _('nav.photos', 'Photos') }}</a></li>
+                        <li><a href="{{ url_for('revue') }}" class="active">{{ _('nav.revue', 'La Nouvelle Revue') }}</a></li>
+                        <li><a href="{{ url_for('contact') }}">{{ _('nav.contact', 'Contact') }}</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 60vh;">
+        <div class="hero-background" style="background-image: url('{{ url_for('static', filename='images/background/revue-background.jpg') }}');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">{{ _('revue.hero.title', 'La Nouvelle Revue de Belles-Lettres') }}</h1>
+            <p class="hero-subtitle fade-in">{{ _('revue.hero.subtitle', 'Expression poétique et artistique des membres') }}</p>
+        </div>
+    </section>
+
+    <!-- Présentation Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">{{ _('revue.presentation.title', 'Présentation de la Revue') }}</h2>
+            <div class="content-block animate-on-scroll">
+                <p>{{ _('revue.presentation.text1', 'La Nouvelle Revue de Belles-Lettres est un espace d\'expression libre où les membres de notre société partagent leurs créations littéraires, poétiques et artistiques.') }}</p>
+                <p>{{ _('revue.presentation.text2', 'Ces textes n\'ont aucun but scientifique, littéraire ou de revendication d\'originalité. Ils sont simplement des compilations poétiques, une expression de beauté et d\'idées, et ne sont pas monétisables.') }}</p>
+                <p>{{ _('revue.presentation.text3', 'Nous vous invitons à découvrir ces œuvres qui reflètent la diversité de pensée et la richesse créative de nos membres.') }}</p>
+            </div>
+            <div class="disclaimer-box animate-on-scroll">
+                <h3>{{ _('revue.disclaimer.title', 'Note importante') }}</h3>
+                <p>{{ _('revue.disclaimer.text', 'Les textes et œuvres présentés dans cette section sont des expressions personnelles des membres de la Société de Belles-Lettres Genève. Ils n\'ont aucune prétention scientifique ou littéraire et ne sont pas destinés à être monétisés. Ils représentent simplement un espace d\'expression artistique et poétique.') }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="section" style="background-color: #f8f8f8;">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">{{ _('revue.publications.title', 'Publications récentes') }}</h2>
+            
+            {% if publications %}
+                <div class="publications-grid">
+                    {% for pub in publications %}
+                        <div class="publication-card animate-on-scroll">
+                            <div class="publication-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="publication-info">
+                                <h3>{{ pub.title[current_language] }}</h3>
+                                <p class="publication-author">{{ pub.author[current_language] }}</p>
+                                <p class="publication-date">{{ pub.date }}</p>
+                                <p class="publication-description">{{ pub.description[current_language] }}</p>
+                                <a href="{{ url_for('download_file', filename=pub.filename) }}" class="btn btn-outline" target="_blank">{{ _('revue.publications.download', 'Télécharger le PDF') }}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-publications">
+                    <p>{{ _('revue.no.publications', 'Aucune publication n\'est disponible pour le moment.') }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Contribution Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">{{ _('revue.contribution.title', 'Comment contribuer') }}</h2>
+            <div class="content-block animate-on-scroll">
+                <p>{{ _('revue.contribution.text1', 'La Nouvelle Revue de Belles-Lettres est ouverte aux contributions de tous les membres de la société.') }}</p>
+                <p>{{ _('revue.contribution.text2', 'Si vous souhaitez partager vos créations, veuillez contacter le comité éditorial via le formulaire de contact en précisant votre intention de contribuer à la revue.') }}</p>
+                <p>{{ _('revue.contribution.text3', 'Tous les formats sont acceptés (poèmes, essais, nouvelles, dessins, etc.) tant qu\'ils peuvent être présentés sous forme de PDF.') }}</p>
+                <div class="text-center">
+                    <a href="{{ url_for('contact') }}" class="btn">{{ _('revue.contribution.contact', 'Contacter le comité éditorial') }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='images/logo/logo-belles-lettres-geneve-white.png') }}" alt="{{ _('logo.alt', 'Logo Société de Belles-Lettres Genève') }}">
+                    <p>{{ _('footer.description', 'La Société de Belles-Lettres Genève est une société d\'étudiants qui incarne l\'esprit genevois depuis [ANNÉE].') }}</p>
+                </div>
+                <div class="footer-nav">
+                    <h4>{{ _('footer.navigation', 'Navigation') }}</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">{{ _('nav.home', 'Accueil') }}</a></li>
+                        <li><a href="{{ url_for('histoire') }}">{{ _('nav.history', 'Histoire') }}</a></li>
+                        <li><a href="{{ url_for('presentation') }}">{{ _('nav.presentation', 'Présentation') }}</a></li>
+                        <li><a href="{{ url_for('valeurs') }}">{{ _('nav.values', 'Valeurs') }}</a></li>
+                        <li><a href="{{ url_for('archives') }}">{{ _('nav.archives', 'Archives') }}</a></li>
+                        <li><a href="{{ url_for('photos') }}">{{ _('nav.photos', 'Photos') }}</a></li>
+                        <li><a href="{{ url_for('revue') }}">{{ _('nav.revue', 'La Nouvelle Revue') }}</a></li>
+                        <li><a href="{{ url_for('contact') }}">{{ _('nav.contact', 'Contact') }}</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>{{ _('footer.follow', 'Suivez-nous') }}</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>{{ _('footer.copyright', '© 2025 Société de Belles-Lettres Genève. Tous droits réservés.') }}</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
