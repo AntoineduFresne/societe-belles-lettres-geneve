@@ -40,7 +40,7 @@ Ce projet est un site web complet pour la Société de Belles-Lettres Genève, d
    ```
    python src/main.py
    ```
-8. Accédez au site à l'adresse : http://localhost:5000
+8. Accédez au site à l'adresse : http://localhost:5001
 
 ## Structure du projet
 
