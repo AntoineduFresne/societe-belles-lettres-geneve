@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Société de Belles-Lettres Genève{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="{{ url_for('index', lang=g.lang) }}">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Belles-Lettres">
+                </a>
+                <div class="logo-text">Société de Belles-Lettres Genève</div>
+            </div>
+            
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index', lang=g.lang) }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>{{ _('Accueil') }}</a></li>
+                    <li><a href="{{ url_for('presentation', lang=g.lang) }}" {% if request.endpoint == 'presentation' %}class="active"{% endif %}>{{ _('Présentation') }}</a></li>
+                    <li><a href="{{ url_for('histoire', lang=g.lang) }}" {% if request.endpoint == 'histoire' %}class="active"{% endif %}>{{ _('Histoire') }}</a></li>
+                    <li><a href="{{ url_for('valeurs', lang=g.lang) }}" {% if request.endpoint == 'valeurs' %}class="active"{% endif %}>{{ _('Valeurs') }}</a></li>
+                    <li><a href="{{ url_for('archives', lang=g.lang) }}" {% if request.endpoint == 'archives' %}class="active"{% endif %}>{{ _('Archives') }}</a></li>
+                    <li><a href="{{ url_for('photos', lang=g.lang) }}" {% if request.endpoint == 'photos' %}class="active"{% endif %}>{{ _('Photos') }}</a></li>
+                    <li><a href="{{ url_for('revue', lang=g.lang) }}" {% if request.endpoint == 'revue' %}class="active"{% endif %}>{{ _('Revue') }}</a></li>
+                    <li><a href="{{ url_for('contact', lang=g.lang) }}" {% if request.endpoint == 'contact' %}class="active"{% endif %}>{{ _('Contact') }}</a></li>
+                </ul>
+                
+                <div class="language-switcher">
+                    <a href="{{ url_for(request.endpoint, lang='fr') }}" {% if g.lang == 'fr' %}class="active"{% endif %}>FR</a>
+                    <a href="{{ url_for(request.endpoint, lang='en') }}" {% if g.lang == 'en' %}class="active"{% endif %}>EN</a>
+                    <a href="{{ url_for(request.endpoint, lang='de') }}" {% if g.lang == 'de' %}class="active"{% endif %}>DE</a>
+                    <a href="{{ url_for(request.endpoint, lang='it') }}" {% if g.lang == 'it' %}class="active"{% endif %}>IT</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>{{ _('Société de Belles-Lettres Genève') }}</h3>
+                <p>{{ _('Une société d\'étudiants qui incarne l\'esprit genevois depuis sa fondation.') }}</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Liens rapides') }}</h3>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('index', lang=g.lang) }}">{{ _('Accueil') }}</a></li>
+                    <li><a href="{{ url_for('presentation', lang=g.lang) }}">{{ _('Présentation') }}</a></li>
+                    <li><a href="{{ url_for('histoire', lang=g.lang) }}">{{ _('Histoire') }}</a></li>
+                    <li><a href="{{ url_for('valeurs', lang=g.lang) }}">{{ _('Valeurs') }}</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Contact') }}</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope"></i> contact@belles-lettres-geneve.ch</li>
+                    <li><i class="fas fa-map-marker-alt"></i> {{ _('Genève, Suisse') }}</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; {{ current_year }} {{ _('Société de Belles-Lettres Genève. Tous droits réservés.') }}</p>
+                <p class="language-note">{{ _('La langue de genre utilisée est le français.') }}</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
