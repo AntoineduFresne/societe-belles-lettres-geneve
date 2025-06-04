@@ -2,9 +2,11 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 import os
 from werkzeug.utils import secure_filename
 from datetime import datetime
+import json
+
+
 
 main_bp = Blueprint('main', __name__)
-
 @main_bp.route('/')
 def index():
     current_year = datetime.now().year
@@ -43,68 +45,59 @@ def contact():
         name = request.form.get('name')
         email = request.form.get('email')
         subject = request.form.get('subject')
-        message = request.form.get('message')
-        
-        # Ici, vous pourriez envoyer un email ou enregistrer dans la base de données
-        
+        # Ici, vous pourriez envoyer un e-mail ou enregistrer dans la base de données
+
         flash('Votre message a été envoyé avec succès!', 'success')
         return redirect(url_for('main.contact'))
-        
     return render_template('contact.html', current_year=current_year)
 
 @main_bp.route('/nouvelle-revue', methods=['GET', 'POST'])
 def nouvelle_revue():
-    current_year = datetime.now().year
+    uploads_dir = os.path.join(current_app.root_path, 'static', 'uploads')
+    meta_path = os.path.join(uploads_dir, 'meta.json')
+
+    # Charger les métadonnées existantes
+    if os.path.exists(meta_path):
+        with open(meta_path, 'r', encoding='utf-8') as f:
+            meta = json.load(f)
+    else:
+        meta = {}
+
     if request.method == 'POST':
-        # Vérification du code d'accès
-        access_code = request.form.get('accessCode')
-        if access_code != '28012003':
-            flash('Code d\'accès incorrect. Veuillez réessayer.', 'danger')
-            return redirect(url_for('main.nouvelle_revue'))
-        
-        # Récupération des données du formulaire
         title = request.form.get('title')
         author = request.form.get('author')
-        summary = request.form.get('summary')
-        
-        # Gestion du fichier uploadé
-        if 'file' not in request.files:
-            flash('Aucun fichier sélectionné', 'danger')
-            return redirect(request.url)
-            
-        file = request.files['file']
-        
-        if file.filename == '':
-            flash('Aucun fichier sélectionné', 'danger')
-            return redirect(request.url)
-            
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            # Création d'un nom de fichier unique avec timestamp
-            timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-            filename = f"{timestamp}_{filename}"
-            
-            # Création du dossier uploads s'il n'existe pas
-            uploads_dir = os.path.join(current_app.root_path, 'static', 'uploads')
-            os.makedirs(uploads_dir, exist_ok=True)
-            
-            file_path = os.path.join(uploads_dir, filename)
-            file.save(file_path)
-            
-            # Ici, vous pourriez enregistrer les métadonnées dans la base de données
-            
-            flash('Votre texte a été soumis avec succès!', 'success')
-            return redirect(url_for('main.nouvelle_revue'))
-        else:
-            flash('Format de fichier non autorisé. Seuls les fichiers PDF sont acceptés.', 'danger')
-            return redirect(request.url)
-            
-    return render_template('nouvelle_revue.html', current_year=current_year)
+        access_code = request.form.get('accessCode')
+        file = request.files.get('file')
+        if access_code != '28012003':
+            return jsonify({'success': False, 'message': "Code d'accès incorrect. Veuillez réessayer."})
+        if not file or not file.filename.endswith('.pdf'):
+            return jsonify({'success': False, 'message': "Format de fichier non autorisé. Seuls les fichiers PDF sont acceptés."})
+        filename = secure_filename(file.filename)
+        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+        filename = f"{timestamp}_{filename}"
+        os.makedirs(uploads_dir, exist_ok=True)
+        file.save(os.path.join(uploads_dir, filename))
+        # Enregistre les métadonnées
+        meta[filename] = {
+            'title': title,
+            'author': author,
+            'date': datetime.now().strftime('%d/%m/%Y')
+        }
+        with open(meta_path, 'w', encoding='utf-8') as f:
+            json.dump(meta, f, ensure_ascii=False, indent=2)
+        return jsonify({'success': True, 'message': "Votre texte a été soumis avec succès !"})
 
-def allowed_file(filename):
-    """Vérifie si l'extension du fichier est autorisée"""
-    ALLOWED_EXTENSIONS = {'pdf'}
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    # Pour GET, lister les PDF déjà uploadés avec métadonnées
+    pdfs = []
+    if os.path.exists(uploads_dir):
+        for f in os.listdir(uploads_dir):
+            if f.lower().endswith('.pdf'):
+                info = meta.get(f, {})
+                pdfs.append({
+                    'filename': f,
+                    'title': info.get('title', f),
+                    'author': info.get('author', 'Auteur inconnu'),
+                    'date': info.get('date', '')
+                })
+        pdfs.sort(key=lambda x: os.path.getctime(os.path.join(uploads_dir, x['filename'])), reverse=True)
+    return render_template('nouvelle_revue.html', pdfs=pdfs)

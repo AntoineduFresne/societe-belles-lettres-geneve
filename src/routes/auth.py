@@ -16,7 +16,7 @@ def login():
             flash('Connexion réussie!', 'success')
             return redirect(url_for('admin.dashboard'))
         else:
-            flash('Code d\'accès incorrect. Veuillez réessayer.', 'danger')
+            flash('Code d\'accès incorrect. Veuillez réessayer auth route.', 'danger')
     
     return render_template('auth/login.html', current_year=current_year)
 

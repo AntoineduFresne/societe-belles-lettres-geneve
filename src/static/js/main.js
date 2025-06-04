@@ -25,7 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             // Simulation d'envoi du formulaire
-            alert('Votre message a été envoyé avec succès !');
+            // ... envoie AJAX ici ...
+            // En cas d'erreur :
+            showToast('Erreur lors de l\'envoi du message.', 'danger');
+            // En cas de succès :
+            showToast('Votre message a été envoyé avec succès !', 'success');
             contactForm.reset();
         });
     }
@@ -34,13 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const uploadForm = document.getElementById('uploadForm');
     if (uploadForm) {
         uploadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             const accessCode = document.getElementById('accessCode').value;
             
             // Vérification du code d'accès
             if (accessCode !== '28012003') {
-                alert('Code d\'accès incorrect. Veuillez réessayer.');
+                alert('Code d\'accès incorrect. Veuillez réessayer main js.');
                 return;
             }
             
@@ -71,3 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+<form id="uploadForm" method="POST" enctype="multipart/form-data">
+    <!-- ... -->
+</form>
