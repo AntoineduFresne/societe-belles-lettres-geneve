@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Administration - Société de Belles-Lettres Genève{% endblock %}
+
+{% block hero %}
+<div class="hero-section hero-small">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Administration</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-3">
+        <div class="admin-sidebar mb-4">
+            <div class="list-group">
+                <a href="{{ url_for('admin.dashboard') }}" class="list-group-item list-group-item-action {% if request.path == url_for('admin.dashboard') %}active{% endif %}">
+                    <i class="fas fa-tachometer-alt me-2"></i> Tableau de bord
+                </a>
+                <a href="{{ url_for('admin.publications') }}" class="list-group-item list-group-item-action {% if request.path == url_for('admin.publications') %}active{% endif %}">
+                    <i class="fas fa-file-alt me-2"></i> Publications
+                </a>
+                <a href="{{ url_for('admin.events') }}" class="list-group-item list-group-item-action {% if request.path == url_for('admin.events') %}active{% endif %}">
+                    <i class="fas fa-calendar-alt me-2"></i> Événements
+                </a>
+                <a href="{{ url_for('admin.gallery') }}" class="list-group-item list-group-item-action {% if request.path == url_for('admin.gallery') %}active{% endif %}">
+                    <i class="fas fa-images me-2"></i> Galerie photos
+                </a>
+                <a href="{{ url_for('main.index') }}" class="list-group-item list-group-item-action">
+                    <i class="fas fa-arrow-left me-2"></i> Retour au site
+                </a>
+                <a href="{{ url_for('auth.logout') }}" class="list-group-item list-group-item-action text-danger">
+                    <i class="fas fa-sign-out-alt me-2"></i> Déconnexion
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-9">
+        <div class="admin-content">
+            {% block admin_content %}
+            <div class="card">
+                <div class="card-body">
+                    <h2>Tableau de bord</h2>
+                    <p class="lead">Bienvenue dans l'interface d'administration de la Société de Belles-Lettres Genève.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title">Publications</h3>
+                                    <p class="display-4">0</p>
+                                    <a href="{{ url_for('admin.publications') }}" class="btn btn-sm btn-primary">Gérer</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title">Événements</h3>
+                                    <p class="display-4">0</p>
+                                    <a href="{{ url_for('admin.events') }}" class="btn btn-sm btn-primary">Gérer</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title">Photos</h3>
+                                    <p class="display-4">0</p>
+                                    <a href="{{ url_for('admin.gallery') }}" class="btn btn-sm btn-primary">Gérer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h3>Publications récentes</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted">Aucune publication pour le moment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h3>Événements à venir</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted">Aucun événement pour le moment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

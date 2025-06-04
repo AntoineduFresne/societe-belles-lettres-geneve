@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter une publication - Administration - Société de Belles-Lettres Genève{% endblock %}
+
+{% block admin_content %}
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Ajouter une publication</h2>
+            <a href="{{ url_for('admin.publications') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Retour à la liste
+            </a>
+        </div>
+        
+        <form id="addPublicationForm" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Titre</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="author" class="form-label">Auteur</label>
+                <input type="text" class="form-control" id="author" name="author" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="summary" class="form-label">Résumé</label>
+                <textarea class="form-control" id="summary" name="summary" rows="3"></textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="file" class="form-label">Fichier (PDF uniquement)</label>
+                <input type="file" class="form-control" id="file" name="file" accept=".pdf" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addPublicationForm = document.getElementById('addPublicationForm');
+        if (addPublicationForm) {
+            addPublicationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('title').value;
+                const author = document.getElementById('author').value;
+                const file = document.getElementById('file').files[0];
+                
+                if (!title || !author || !file) {
+                    alert('Veuillez remplir tous les champs obligatoires.');
+                    return;
+                }
+                
+                // Vérifier le type de fichier
+                if (file.type !== 'application/pdf') {
+                    alert('Seuls les fichiers PDF sont acceptés.');
+                    return;
+                }
+                
+                // Ici, vous enverriez les données au serveur via une requête AJAX ou le formulaire
+                // Pour le moment, simulons une réponse positive
+                alert('Publication ajoutée avec succès !');
+                
+                // Rediriger vers la liste des publications
+                window.location.href = "{{ url_for('admin.publications') }}";
+            });
+        }
+    });
+</script>
+{% endblock %}

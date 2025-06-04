@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+
+{% block title %}Événements - Administration - Société de Belles-Lettres Genève{% endblock %}
+
+{% block admin_content %}
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Gestion des événements</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                <i class="fas fa-plus me-2"></i> Nouvel événement
+            </button>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Calendrier des événements</h3>
+            </div>
+            <div class="card-body">
+                <div id="calendar"></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Liste des événements</h3>
+            </div>
+            <div class="card-body">
+                {% if events %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Date</th>
+                                    <th>Lieu</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in events %}
+                                <tr>
+                                    <td>{{ event.title }}</td>
+                                    <td>{{ event.date.strftime('%d/%m/%Y %H:%M') }}</td>
+                                    <td>{{ event.location }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#editEventModal" data-event-id="{{ event.id }}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteEventModal" data-event-id="{{ event.id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">Aucun événement pour le moment.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour ajouter un événement -->
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEventModalLabel">Nouvel événement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="mb-3">
+                        <label for="eventTitle" class="form-label">Titre</label>
+                        <input type="text" class="form-control" id="eventTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDate" class="form-label">Date</label>
+                        <input type="datetime-local" class="form-control" id="eventDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventLocation" class="form-label">Lieu</label>
+                        <input type="text" class="form-control" id="eventLocation">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="saveEventBtn">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour modifier un événement -->
+<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editEventModalLabel">Modifier l'événement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editEventForm">
+                    <input type="hidden" id="editEventId">
+                    <div class="mb-3">
+                        <label for="editEventTitle" class="form-label">Titre</label>
+                        <input type="text" class="form-control" id="editEventTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEventDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editEventDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEventDate" class="form-label">Date</label>
+                        <input type="datetime-local" class="form-control" id="editEventDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEventLocation" class="form-label">Lieu</label>
+                        <input type="text" class="form-control" id="editEventLocation">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="updateEventBtn">Mettre à jour</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour supprimer un événement -->
+<div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteEventModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir supprimer cet événement ? Cette action est irréversible.</p>
+                <input type="hidden" id="deleteEventId">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales/fr.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialisation du calendrier
+        const calendarEl = document.getElementById('calendar');
+        if (calendarEl) {
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'fr',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,listMonth'
+                },
+                events: [
+                    // Ici, vous chargeriez les événements depuis la base de données
+                    // Pour le moment, utilisons des exemples
+                    {
+                        title: 'Exemple d\'événement',
+                        start: '2025-06-10T18:00:00',
+                        end: '2025-06-10T20:00:00',
+                        location: 'Genève'
+                    }
+                ],
+                eventClick: function(info) {
+                    // Afficher les détails de l'événement
+                    alert('Événement: ' + info.event.title + '\nDate: ' + info.event.start.toLocaleString() + '\nLieu: ' + (info.event.extendedProps.location || 'Non spécifié'));
+                }
+            });
+            calendar.render();
+        }
+        
+        // Gestion du formulaire d'ajout d'événement
+        const saveEventBtn = document.getElementById('saveEventBtn');
+        if (saveEventBtn) {
+            saveEventBtn.addEventListener('click', function() {
+                const title = document.getElementById('eventTitle').value;
+                const description = document.getElementById('eventDescription').value;
+                const date = document.getElementById('eventDate').value;
+                const location = document.getElementById('eventLocation').value;
+                
+                if (!title || !date) {
+                    alert('Veuillez remplir tous les champs obligatoires.');
+                    return;
+                }
+                
+                // Ici, vous enverriez les données au serveur via une requête AJAX
+                // Pour le moment, simulons une réponse positive
+                alert('Événement créé avec succès !');
+                
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
+                modal.hide();
+                
+                // Recharger la page pour voir le nouvel événement
+                // window.location.reload();
+            });
+        }
+        
+        // Gestion du formulaire de modification d'événement
+        const updateEventBtn = document.getElementById('updateEventBtn');
+        if (updateEventBtn) {
+            updateEventBtn.addEventListener('click', function() {
+                const id = document.getElementById('editEventId').value;
+                const title = document.getElementById('editEventTitle').value;
+                const description = document.getElementById('editEventDescription').value;
+                const date = document.getElementById('editEventDate').value;
+                const location = document.getElementById('editEventLocation').value;
+                
+                if (!title || !date) {
+                    alert('Veuillez remplir tous les champs obligatoires.');
+                    return;
+                }
+                
+                // Ici, vous enverriez les données au serveur via une requête AJAX
+                // Pour le moment, simulons une réponse positive
+                alert('Événement mis à jour avec succès !');
+                
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editEventModal'));
+                modal.hide();
+                
+                // Recharger la page pour voir les modifications
+                // window.location.reload();
+            });
+        }
+        
+        // Gestion de la suppression d'événement
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        if (confirmDeleteBtn) {
+            confirmDeleteBtn.addEventListener('click', function() {
+                const id = document.getElementById('deleteEventId').value;
+                
+                // Ici, vous enverriez la demande de suppression au serveur via une requête AJAX
+                // Pour le moment, simulons une réponse positive
+                alert('Événement supprimé avec succès !');
+                
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('deleteEventModal'));
+                modal.hide();
+                
+                // Recharger la page pour voir les modifications
+                // window.location.reload();
+            });
+        }
+        
+        // Gestion des modals pour édition et suppression
+        const editEventModal = document.getElementById('editEventModal');
+        if (editEventModal) {
+            editEventModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const eventId = button.getAttribute('data-event-id');
+                
+                // Ici, vous récupéreriez les données de l'événement depuis le serveur
+                // Pour le moment, utilisons des valeurs d'exemple
+                document.getElementById('editEventId').value = eventId;
+                document.getElementById('editEventTitle').value = 'Exemple d\'événement';
+                document.getElementById('editEventDescription').value = 'Description de l\'événement';
+                document.getElementById('editEventDate').value = '2025-06-10T18:00';
+                document.getElementById('editEventLocation').value = 'Genève';
+            });
+        }
+        
+        const deleteEventModal = document.getElementById('deleteEventModal');
+        if (deleteEventModal) {
+            deleteEventModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const eventId = button.getAttribute('data-event-id');
+                
+                document.getElementById('deleteEventId').value = eventId;
+            });
+        }
+    });
+</script>
+{% endblock %}

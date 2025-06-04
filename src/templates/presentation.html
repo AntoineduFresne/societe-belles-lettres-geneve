@@ -1,64 +1,133 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
-{% block title %}{{ _('Présentation') }} - {{ _('Société de Belles-Lettres Genève') }}{% endblock %}
+{% block title %}Présentation - Société de Belles-Lettres Genève{% endblock %}
+
+{% block hero %}
+<div class="hero-section hero-small">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Présentation</h1>
+    </div>
+</div>
+{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero" style="background-image: url('{{ url_for('static', filename='img/presentation-bg.jpg') }}');">
-    <div class="hero-content">
-        <h1>{{ _('Présentation') }}</h1>
-        <p>{{ _('Découvrez la Société de Belles-Lettres Genève') }}</p>
-    </div>
-</section>
-
-<!-- Presentation Section -->
-<section id="presentation">
-    <div class="container">
-        <div class="section-title">
-            <h2>{{ _('Qui sommes-nous ?') }}</h2>
-        </div>
-        
-        <div class="about-content">
-            <div class="about-text">
-                <p>{{ _('Comme son nom ne l\'indique pas, Belles-Lettres est une société d\'étudiants fondée par une poignée d\'élèves passionnés. Belles-Lettres rassemble les étudiants qui désirent animer leurs loisirs d\'une manière insolite, en participant à l\'effervescence intellectuelle de leur époque.') }}</p>
-                
-                <p>{{ _('Ainsi, conférences, lectures, exposés littéraires, discussions pédagogiques, disputes philosophiques, échanges d\'anathèmes religieux et de cultures, promotion et défense d\'intérêts immatériels, culte de l\'amitié et de l\'art poétique, déclamations théâtrales, composition et interprétation de chansons, Belles-Lettres nourrit les esprits juvéniles dans une mesure qu\'aucune formation officielle ni aucune Académie ne permet d\'atteindre.') }}</p>
-                
-                <p>{{ _('À ce jour, si l\'on parcourt la longue liste des génies et des célébrités (ce ne sont pas forcément les mêmes) qui peuplent la société, son palmarès reste inégalé.') }}</p>
-            </div>
-            <div class="about-image">
-                <img src="{{ url_for('static', filename='img/presentation.jpg') }}" alt="{{ _('Membres de Belles-Lettres') }}">
-            </div>
-        </div>
-        
-        <div class="section-title" style="margin-top: 50px;">
-            <h2>{{ _('Nos couleurs') }}</h2>
-        </div>
-        
-        <div class="about-content">
-            <div class="about-image">
-                <img src="{{ url_for('static', filename='img/colors.jpg') }}" alt="{{ _('Couleurs de Belles-Lettres') }}">
-            </div>
-            <div class="about-text">
-                <p>{{ _('Belles-Lettres a pour couleurs le vert et le rouge. Rappel du 1er Empire pour certains, allusion aux couleurs de l\'Académie française pour d\'autres, alliance entre subtilité artistique et couleurs fondamentales pour les poètes… Bref, les Bellettriens qui le désirent portent les couleurs en arborant fièrement la traditionnelle casquette, le mythique béret et l\'ancestral ruban, leurs attributs par excellence !') }}</p>
-                
-                <p>{{ _('Néanmoins, afin de garder un esprit sans entrave, ils n\'y sont point astreints. Ceci est laissé à l\'élan de leur cœur et à leur bon plaisir.') }}</p>
-            </div>
-        </div>
-        
-        <div class="section-title" style="margin-top: 50px;">
-            <h2>{{ _('Se réunir le temps d\'un conciliabule…') }}</h2>
-        </div>
-        
-        <div class="presentation-content">
-            <p>{{ _('Lorsque les Bellettriens en ont l\'envie, il leur arrive de se retrouver le temps d\'un conciliabule… Rencontres impromptues, simples discussions, débats philosophiques, lectures de texte, chants, jeux de société, dégustation de chocolat improvisée, le conciliabule est le lieu de tous les possibles.') }}</p>
+<div class="row">
+    <div class="col-lg-8">
+        <article class="content-section">
+            <h2>La Société de Belles-Lettres Genève</h2>
             
-            <blockquote>
-                <p>{{ _('Conciliabule, nom masculin:') }}</p>
-                <p>{{ _('Du latin conciliare (« concilier »), conciliabulum (« lieu de réunion ») et bulla (« bulle »).') }}</p>
-                <p>{{ _('Conciliabule bellettrien – Entretien, conversation où l\'on parle sérieusement de questions futiles et où l\'on aborde avec légèreté des sujets qui se prennent au sérieux, tout en créant des bulles par le glouglou du vin que l\'on verse dans des godets destinés aux joyeux convives se réunissant.') }}</p>
-            </blockquote>
+            <p class="lead">Une société littéraire ancrée dans la tradition et tournée vers l'avenir.</p>
+            
+            <div class="mb-5">
+                <h3>Qui sommes-nous ?</h3>
+                <p>Texte de présentation générale à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+                
+                <p>Texte sur les activités et la mission à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+            </div>
+            
+            <div class="mb-5">
+                <h3>Notre mission</h3>
+                <p>Texte sur la mission de la société à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="mission-item text-center">
+                            <div class="mission-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4>Culture</h4>
+                            <p>Promouvoir la culture et les arts littéraires.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mission-item text-center">
+                            <div class="mission-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Amitié</h4>
+                            <p>Cultiver des liens d'amitié durables entre membres.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mission-item text-center">
+                            <div class="mission-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Éducation</h4>
+                            <p>Encourager l'excellence académique et intellectuelle.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                <h3>Structure et organisation</h3>
+                <p>Texte sur la structure de la société à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                
+                <div class="organization-chart mt-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4>Comité directeur</h4>
+                            <p>Description du rôle et de la composition du comité directeur à compléter.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4>Commissions</h4>
+                            <p>Description des différentes commissions et de leurs rôles à compléter.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4>Membres</h4>
+                            <p>Information sur les différentes catégories de membres à compléter.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="sidebar">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Comité actuel</h3>
+                </div>
+                <div class="card-body">
+                    <div class="committee-member mb-3">
+                        <h4>Nom du président</h4>
+                        <p class="text-muted">Président</p>
+                        <p>Courte biographie à compléter.</p>
+                    </div>
+                    
+                    <div class="committee-member mb-3">
+                        <h4>Nom du vice-président</h4>
+                        <p class="text-muted">Vice-président</p>
+                        <p>Courte biographie à compléter.</p>
+                    </div>
+                    
+                    <div class="committee-member mb-3">
+                        <h4>Nom du secrétaire</h4>
+                        <p class="text-muted">Secrétaire</p>
+                        <p>Courte biographie à compléter.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Nous rejoindre</h3>
+                </div>
+                <div class="card-body">
+                    <p>Informations sur comment rejoindre la société à compléter.</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Nous contacter</a>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}

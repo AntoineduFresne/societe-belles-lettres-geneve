@@ -1,75 +1,166 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
-{% block title %}{{ _('Valeurs') }} - {{ _('Société de Belles-Lettres Genève') }}{% endblock %}
+{% block title %}Valeurs - Société de Belles-Lettres Genève{% endblock %}
+
+{% block hero %}
+<div class="hero-section hero-small">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Nos Valeurs</h1>
+    </div>
+</div>
+{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero" style="background-image: url('{{ url_for('static', filename='img/values-bg.jpg') }}');">
-    <div class="hero-content">
-        <h1>{{ _('Nos Valeurs') }}</h1>
-        <p>{{ _('Patriae · Amicitiae · Litteris') }}</p>
-    </div>
-</section>
-
-<!-- Values Section -->
-<section id="values-detail">
-    <div class="container">
-        <div class="section-title">
-            <h2>{{ _('Les valeurs de Belles-Lettres') }}</h2>
-        </div>
-        
-        <div class="values-intro">
-            <p>{{ _('La Société de Belles-Lettres Genève s\'articule autour de trois valeurs fondamentales qui guident nos actions et notre esprit depuis notre fondation. Ces valeurs, exprimées dans notre devise latine "Patriae · Amicitiae · Litteris", sont au cœur de notre identité et de notre mission.') }}</p>
-        </div>
-        
-        <div class="value-section">
-            <div class="value-header">
-                <i class="fas fa-flag"></i>
-                <h3>{{ _('Patriae (La Patrie)') }}</h3>
-            </div>
-            <div class="value-content">
-                <p>{{ _('Notre attachement à la patrie ne se traduit pas par un nationalisme étroit, mais par un engagement profond envers notre héritage culturel et nos traditions. Nous cultivons un esprit critique et constructif sur les questions politiques, économiques et sociales qui façonnent notre pays.') }}</p>
-                
-                <p>{{ _('Cet engagement se manifeste par des débats, des conférences et des discussions où chaque membre est encouragé à développer sa propre réflexion sur les enjeux contemporains, tout en respectant la diversité des opinions.') }}</p>
-                
-                <p>{{ _('Être Bellettrien, c\'est participer activement à la vie intellectuelle de notre société, en portant un regard à la fois critique et bienveillant sur notre patrie et ses institutions.') }}</p>
-            </div>
-        </div>
-        
-        <div class="value-section">
-            <div class="value-header">
-                <i class="fas fa-handshake"></i>
-                <h3>{{ _('Amicitiae (L\'Amitié)') }}</h3>
-            </div>
-            <div class="value-content">
-                <p>{{ _('L\'amitié est le ciment qui unit les membres de Belles-Lettres à travers les générations. Nous cultivons des liens sincères et durables qui transcendent les différences d\'âge, de formation et d\'opinions.') }}</p>
-                
-                <p>{{ _('Nos conciliabules, nos rencontres et nos traditions communes créent un espace où l\'amitié peut s\'épanouir dans un esprit de camaraderie et de respect mutuel. Cette fraternité s\'étend bien au-delà des années d\'études et accompagne les Bellettriens tout au long de leur vie.') }}</p>
-                
-                <p>{{ _('L\'amitié bellettrienne, c\'est aussi l\'art de la conversation, du débat courtois et de l\'échange intellectuel dans une atmosphère de convivialité et de bienveillance.') }}</p>
-            </div>
-        </div>
-        
-        <div class="value-section">
-            <div class="value-header">
-                <i class="fas fa-book"></i>
-                <h3>{{ _('Litteris (Les Lettres)') }}</h3>
-            </div>
-            <div class="value-content">
-                <p>{{ _('Les Lettres représentent notre attachement à la culture, à la littérature et à l\'expression artistique sous toutes ses formes. Nous encourageons la création, la réflexion et le partage des connaissances dans un esprit d\'ouverture et de curiosité intellectuelle.') }}</p>
-                
-                <p>{{ _('À travers notre revue, nos lectures publiques et nos activités culturelles, nous offrons à nos membres un espace d\'expression et de découverte qui complète leur formation académique et enrichit leur parcours personnel.') }}</p>
-                
-                <p>{{ _('L\'esprit bellettrien se nourrit de cette passion pour les Lettres, qui n\'est pas une simple érudition, mais une manière vivante et joyeuse d\'aborder la culture et de la partager.') }}</p>
-            </div>
-        </div>
-        
-        <div class="values-conclusion">
-            <h3>{{ _('L\'esprit bellettrien') }}</h3>
-            <p>{{ _('L\'esprit bellettrien est composé de fantaisie et de gaîté, tissé de lumière et filé de rayon, parlant français mais détestant l\'écolier limousin, prétendant simplement demeurer fidèle au verbe et aux mœurs de son pays, il offre cette particularité qu\'il n\'est d\'aucune utilité pratique. Il n\'obéit à nulle fin immédiate. Il ne sert à rien, comme ne servent à rien ces lettres qu\'il cultive, que le passé appelait belles, et que les modernes ingénieurs souhaiteraient rayer de nos programmes.') }}</p>
+<div class="row">
+    <div class="col-lg-8">
+        <article class="content-section">
+            <h2>Les valeurs qui nous animent</h2>
             
-            <p>{{ _('L\'esprit bellettrien est comme l\'esprit qui aide à tout : il ne suffit à rien. Il ne résout pas l\'énigme de notre destinée. Il se montre impuissant devant le deuil et devant le drame dont notre mystère est borné. La réalité éternelle le dépasse. Du moins est-il un condiment de la vie.') }}</p>
+            <p class="lead">Découvrez les principes fondamentaux qui guident notre société et unissent nos membres.</p>
+            
+            <div class="values-section mb-5">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="value-content">
+                        <h3>Culture littéraire</h3>
+                        <p>Texte sur l'importance de la culture littéraire à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                    </div>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="value-content">
+                        <h3>Amitié et fraternité</h3>
+                        <p>Texte sur l'amitié et la fraternité à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                    </div>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="value-content">
+                        <h3>Tradition et héritage</h3>
+                        <p>Texte sur l'importance de la tradition et de l'héritage à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                    </div>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="value-content">
+                        <h3>Esprit critique et innovation</h3>
+                        <p>Texte sur l'esprit critique et l'innovation à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                    </div>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="value-content">
+                        <h3>Excellence académique</h3>
+                        <p>Texte sur l'excellence académique à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                <h3>Notre devise</h3>
+                <div class="motto-section text-center py-4">
+                    <blockquote class="blockquote">
+                        <p class="mb-0">"Devise de la société à compléter"</p>
+                    </blockquote>
+                    <p>Explication de la signification de la devise à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                <h3>Comment ces valeurs se traduisent au quotidien</h3>
+                <p>Texte sur l'application concrète des valeurs à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h4>Dans nos activités</h4>
+                                <p>Description de l'application des valeurs dans les activités à compléter.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h4>Dans nos publications</h4>
+                                <p>Description de l'application des valeurs dans les publications à compléter.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="sidebar">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Témoignages</h3>
+                </div>
+                <div class="card-body">
+                    <div class="testimonial mb-3">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">"Témoignage d'un membre à compléter."</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Nom du membre, <cite title="Source Title">Promotion à compléter</cite></footer>
+                    </div>
+                    
+                    <div class="testimonial mb-3">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">"Témoignage d'un membre à compléter."</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Nom du membre, <cite title="Source Title">Promotion à compléter</cite></footer>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Publications récentes</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="d-flex align-items-center">
+                                <i class="far fa-file-alt me-2"></i>
+                                <span>Titre de la publication à compléter</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="d-flex align-items-center">
+                                <i class="far fa-file-alt me-2"></i>
+                                <span>Titre de la publication à compléter</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="d-flex align-items-center">
+                                <i class="far fa-file-alt me-2"></i>
+                                <span>Titre de la publication à compléter</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="text-center mt-3">
+                        <a href="{{ url_for('main.nouvelle_revue') }}" class="btn btn-sm btn-outline-primary">Voir toutes les publications</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}

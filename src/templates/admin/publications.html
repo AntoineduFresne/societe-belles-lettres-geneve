@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Publications - Administration - Société de Belles-Lettres Genève{% endblock %}
+
+{% block admin_content %}
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Gestion des publications</h2>
+            <a href="{{ url_for('admin.add_publication') }}" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i> Nouvelle publication
+            </a>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Liste des publications</h3>
+            </div>
+            <div class="card-body">
+                {% if publications %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Auteur</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for publication in publications %}
+                                <tr>
+                                    <td>{{ publication.title }}</td>
+                                    <td>{{ publication.author }}</td>
+                                    <td>{{ publication.created_at.strftime('%d/%m/%Y') }}</td>
+                                    <td>
+                                        <a href="{{ url_for('admin.edit_publication', id=publication.id) }}" class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletePublicationModal" data-publication-id="{{ publication.id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">Aucune publication pour le moment.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour supprimer une publication -->
+<div class="modal fade" id="deletePublicationModal" tabindex="-1" aria-labelledby="deletePublicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePublicationModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir supprimer cette publication ? Cette action est irréversible.</p>
+                <form id="deletePublicationForm" method="POST">
+                    <input type="hidden" id="deletePublicationId" name="publication_id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" id="confirmDeletePublicationBtn">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion de la suppression de publication
+        const confirmDeletePublicationBtn = document.getElementById('confirmDeletePublicationBtn');
+        if (confirmDeletePublicationBtn) {
+            confirmDeletePublicationBtn.addEventListener('click', function() {
+                const id = document.getElementById('deletePublicationId').value;
+                
+                // Ici, vous enverriez la demande de suppression au serveur via une requête AJAX
+                // Pour le moment, simulons une réponse positive
+                alert('Publication supprimée avec succès !');
+                
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('deletePublicationModal'));
+                modal.hide();
+                
+                // Recharger la page pour voir les modifications
+                // window.location.reload();
+            });
+        }
+        
+        // Gestion du modal pour suppression
+        const deletePublicationModal = document.getElementById('deletePublicationModal');
+        if (deletePublicationModal) {
+            deletePublicationModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const publicationId = button.getAttribute('data-publication-id');
+                
+                document.getElementById('deletePublicationId').value = publicationId;
+            });
+        }
+    });
+</script>
+{% endblock %}

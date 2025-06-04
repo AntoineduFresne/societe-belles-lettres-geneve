@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Société de Belles-Lettres Genève{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Belles-Lettres Genève" class="logo">
+                    <span>Société de Belles-Lettres Genève</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.index') %}active{% endif %}" href="{{ url_for('main.index') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.presentation') %}active{% endif %}" href="{{ url_for('main.presentation') }}">Présentation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.histoire') %}active{% endif %}" href="{{ url_for('main.histoire') }}">Histoire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.valeurs') %}active{% endif %}" href="{{ url_for('main.valeurs') }}">Valeurs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.archives') %}active{% endif %}" href="{{ url_for('main.archives') }}">Archives</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.photos') %}active{% endif %}" href="{{ url_for('main.photos') }}">Photos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.nouvelle_revue') %}active{% endif %}" href="{{ url_for('main.nouvelle_revue') }}">Nouvelle Revue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('main.contact') %}active{% endif %}" href="{{ url_for('main.contact') }}">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="social-icons ms-lg-4">
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block hero %}{% endblock %}
+        
+        <div class="container py-5">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Société de Belles-Lettres Genève</h5>
+                    <p>Adresse à compléter<br>
+                    1200 Genève, Suisse</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ url_for('main.index') }}">Accueil</a></li>
+                        <li><a href="{{ url_for('main.histoire') }}">Histoire</a></li>
+                        <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Suivez-nous</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; {{ current_year }} Société de Belles-Lettres Genève. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

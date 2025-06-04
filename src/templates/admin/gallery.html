@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}Galerie - Administration - Société de Belles-Lettres Genève{% endblock %}
+
+{% block admin_content %}
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Gestion de la galerie photos</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAlbumModal">
+                <i class="fas fa-plus me-2"></i> Nouvel album
+            </button>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Albums</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if albums %}
+                            <div class="list-group">
+                                {% for album in albums %}
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    {{ album.title }}
+                                    <span class="badge bg-primary rounded-pill">{{ album.images|length }}</span>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p class="text-muted">Aucun album pour le moment.</p>
+                            <p>Créez un nouvel album pour commencer à organiser vos photos.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Ajouter des photos</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="uploadImagesForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="albumSelect" class="form-label">Album</label>
+                                <select class="form-select" id="albumSelect" required>
+                                    <option value="" selected disabled>Sélectionner un album</option>
+                                    {% if albums %}
+                                        {% for album in albums %}
+                                        <option value="{{ album.id }}">{{ album.title }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="imageFiles" class="form-label">Photos</label>
+                                <input class="form-control" type="file" id="imageFiles" multiple accept="image/*" required>
+                                <div class="form-text">Vous pouvez sélectionner plusieurs photos à la fois.</div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Télécharger</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3>Toutes les photos</h3>
+            </div>
+            <div class="card-body">
+                {% if images %}
+                    <div class="row g-3">
+                        {% for image in images %}
+                        <div class="col-md-3 col-6">
+                            <div class="card h-100">
+                                <img src="{{ image.file_path }}" class="card-img-top" alt="{{ image.title }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ image.title }}</h5>
+                                    <p class="card-text small">{{ image.album.title }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Aucune photo pour le moment.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour ajouter un album -->
+<div class="modal fade" id="addAlbumModal" tabindex="-1" aria-labelledby="addAlbumModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAlbumModalLabel">Nouvel album</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addAlbumForm">
+                    <div class="mb-3">
+                        <label for="albumTitle" class="form-label">Titre</label>
+                        <input type="text" class="form-control" id="albumTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="albumDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="albumDescription" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="saveAlbumBtn">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du formulaire d'ajout d'album
+        const saveAlbumBtn = document.getElementById('saveAlbumBtn');
+        if (saveAlbumBtn) {
+            saveAlbumBtn.addEventListener('click', function() {
+                const title = document.getElementById('albumTitle').value;
+                const description = document.getElementById('albumDescription').value;
+                
+                if (!title) {
+                    alert('Veuillez saisir un titre pour l\'album.');
+                    return;
+                }
+                
+                // Ici, vous enverriez les données au serveur via une requête AJAX
+                // Pour le moment, simulons une réponse positive
+                alert('Album créé avec succès !');
+                
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addAlbumModal'));
+                modal.hide();
+                
+                // Recharger la page pour voir le nouvel album
+                // window.location.reload();
+            });
+        }
+        
+        // Gestion du formulaire d'upload d'images
+        const uploadImagesForm = document.getElementById('uploadImagesForm');
+        if (uploadImagesForm) {
+            uploadImagesForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const albumId = document.getElementById('albumSelect').value;
+                const files = document.getElementById('imageFiles').files;
+                
+                if (!albumId) {
+                    alert('Veuillez sélectionner un album.');
+                    return;
+                }
+                
+                if (files.length === 0) {
+                    alert('Veuillez sélectionner au moins une photo.');
+                    return;
+                }
+                
+                // Ici, vous enverriez les fichiers au serveur via une requête AJAX
+                // Pour le moment, simulons une réponse positive
+                alert('Photos téléchargées avec succès !');
+                
+                // Réinitialiser le formulaire
+                uploadImagesForm.reset();
+                
+                // Recharger la page pour voir les nouvelles photos
+                // window.location.reload();
+            });
+        }
+    });
+</script>
+{% endblock %}

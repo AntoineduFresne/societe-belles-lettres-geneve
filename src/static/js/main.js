@@ -1,42 +1,73 @@
-// Script principal pour la Société de Belles-Lettres Genève
-
+// Fonctions JavaScript principales pour le site
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion du menu mobile
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('nav');
-    
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            nav.classList.toggle('active');
-        });
-    }
-    
-    // Gestion du header au scroll
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-    
-    // Animation des sections au scroll
-    const sections = document.querySelectorAll('section');
-    
-    function checkSections() {
-        const triggerBottom = window.innerHeight * 0.8;
+    // Animation des éléments au scroll
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.fade-in');
         
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
             
-            if (sectionTop < triggerBottom) {
-                section.classList.add('visible');
+            if (elementPosition < windowHeight - 50) {
+                element.style.opacity = 1;
             }
         });
+    };
+    
+    // Initialisation des animations au chargement
+    animateOnScroll();
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Gestion du formulaire de contact
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulation d'envoi du formulaire
+            alert('Votre message a été envoyé avec succès !');
+            contactForm.reset();
+        });
     }
     
-    window.addEventListener('scroll', checkSections);
-    checkSections();
+    // Gestion du formulaire d'upload pour la Nouvelle Revue
+    const uploadForm = document.getElementById('uploadForm');
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const accessCode = document.getElementById('accessCode').value;
+            
+            // Vérification du code d'accès
+            if (accessCode !== '28012003') {
+                alert('Code d\'accès incorrect. Veuillez réessayer.');
+                return;
+            }
+            
+            // Simulation d'upload réussi
+            alert('Votre texte a été soumis avec succès !');
+            uploadForm.reset();
+        });
+    }
+    
+    // Gestion de la galerie photos
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    if (galleryItems.length > 0) {
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Ici, vous pourriez implémenter une lightbox pour afficher l'image en grand
+                console.log('Image cliquée:', this.querySelector('img').src);
+            });
+        });
+    }
+    
+    // Gestion du menu mobile
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (navbarToggler) {
+        navbarToggler.addEventListener('click', function() {
+            document.querySelector('.navbar-collapse').classList.toggle('show');
+        });
+    }
 });

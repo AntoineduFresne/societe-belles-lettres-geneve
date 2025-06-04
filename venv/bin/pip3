@@ -1,4 +1,4 @@
-#!/home/ubuntu/belles-lettres-site/venv/bin/python3.11
+#!/Users/antoinedufresne/Documents/societe-belles-lettres-geneve/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

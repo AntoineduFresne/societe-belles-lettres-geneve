@@ -1,69 +1,185 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
-{% block title %}{{ _('Archives') }} - {{ _('Société de Belles-Lettres Genève') }}{% endblock %}
+{% block title %}Archives - Société de Belles-Lettres Genève{% endblock %}
+
+{% block hero %}
+<div class="hero-section hero-small">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Archives</h1>
+    </div>
+</div>
+{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero" style="background-image: url('{{ url_for('static', filename='img/archives-bg.jpg') }}');">
-    <div class="hero-content">
-        <h1>{{ _('Archives') }}</h1>
-        <p>{{ _('La mémoire de la Société de Belles-Lettres Genève') }}</p>
+<div class="row">
+    <div class="col-lg-8">
+        <article class="content-section">
+            <h2>Archives de la Société de Belles-Lettres Genève</h2>
+            
+            <p class="lead">Explorez notre patrimoine littéraire et historique à travers nos archives.</p>
+            
+            <div class="mb-5">
+                <h3>Collections d'archives</h3>
+                <p>Texte de présentation des archives à compléter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h4>Documents historiques</h4>
+                                <p>Description des documents historiques disponibles à compléter.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h4>Publications anciennes</h4>
+                                <p>Description des publications anciennes disponibles à compléter.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h4>Correspondances</h4>
+                                <p>Description des correspondances disponibles à compléter.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h4>Photographies d'époque</h4>
+                                <p>Description des photographies d'époque disponibles à compléter.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                <h3>Recherche dans les archives</h3>
+                <p>Utilisez notre moteur de recherche pour explorer nos archives.</p>
+                
+                <form class="archive-search-form mt-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Mots-clés">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select">
+                                <option selected>Toutes les catégories</option>
+                                <option>Documents</option>
+                                <option>Publications</option>
+                                <option>Correspondances</option>
+                                <option>Photographies</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="mb-5">
+                <h3>Archives récemment ajoutées</h3>
+                
+                <div class="table-responsive mt-4">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Catégorie</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Titre du document à compléter</td>
+                                <td>Catégorie à compléter</td>
+                                <td>Date à compléter</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">Consulter</a></td>
+                            </tr>
+                            <tr>
+                                <td>Titre du document à compléter</td>
+                                <td>Catégorie à compléter</td>
+                                <td>Date à compléter</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">Consulter</a></td>
+                            </tr>
+                            <tr>
+                                <td>Titre du document à compléter</td>
+                                <td>Catégorie à compléter</td>
+                                <td>Date à compléter</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">Consulter</a></td>
+                            </tr>
+                            <tr>
+                                <td>Titre du document à compléter</td>
+                                <td>Catégorie à compléter</td>
+                                <td>Date à compléter</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">Consulter</a></td>
+                            </tr>
+                            <tr>
+                                <td>Titre du document à compléter</td>
+                                <td>Catégorie à compléter</td>
+                                <td>Date à compléter</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">Consulter</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
     </div>
-</section>
-
-<!-- Archives Section -->
-<section id="archives">
-    <div class="container">
-        <div class="section-title">
-            <h2>{{ _('Nos archives') }}</h2>
-        </div>
-        
-        <div class="archives-intro">
-            <p>{{ _('Les archives de la Société de Belles-Lettres Genève constituent un patrimoine précieux qui témoigne de notre histoire, de nos traditions et de l\'évolution de notre société au fil des décennies. Vous trouverez ici une sélection de documents historiques, de publications et de témoignages qui illustrent la richesse de notre héritage.') }}</p>
-        </div>
-        
-        <div class="archives-container">
-            <div class="archive-item">
-                <h3>{{ _('Documents fondateurs') }}</h3>
-                <p>{{ _('Découvrez les documents qui ont marqué la fondation et les premières années de la Société de Belles-Lettres Genève.') }}</p>
-                <a href="#" class="btn">{{ _('Consulter') }}</a>
+    
+    <div class="col-lg-4">
+        <div class="sidebar">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Accès aux archives</h3>
+                </div>
+                <div class="card-body">
+                    <p>Informations sur l'accès aux archives physiques à compléter.</p>
+                    <p>Pour toute demande spécifique concernant nos archives, n'hésitez pas à nous contacter.</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Nous contacter</a>
+                </div>
             </div>
             
-            <div class="archive-item">
-                <h3>{{ _('Publications historiques') }}</h3>
-                <p>{{ _('Explorez les publications, revues et recueils produits par les membres de Belles-Lettres au cours de notre histoire.') }}</p>
-                <a href="#" class="btn">{{ _('Consulter') }}</a>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Collections spéciales</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="d-flex align-items-center">
+                                <i class="far fa-star me-2"></i>
+                                <span>Nom de la collection spéciale à compléter</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="d-flex align-items-center">
+                                <i class="far fa-star me-2"></i>
+                                <span>Nom de la collection spéciale à compléter</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="d-flex align-items-center">
+                                <i class="far fa-star me-2"></i>
+                                <span>Nom de la collection spéciale à compléter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            
-            <div class="archive-item">
-                <h3>{{ _('Témoignages') }}</h3>
-                <p>{{ _('Lisez les témoignages de Bellettriens qui racontent leur expérience et leurs souvenirs au sein de notre société.') }}</p>
-                <a href="#" class="btn">{{ _('Consulter') }}</a>
-            </div>
-            
-            <div class="archive-item">
-                <h3>{{ _('Traditions et rituels') }}</h3>
-                <p>{{ _('Découvrez l\'évolution des traditions, des rituels et des coutumes qui font la spécificité de Belles-Lettres.') }}</p>
-                <a href="#" class="btn">{{ _('Consulter') }}</a>
-            </div>
-            
-            <div class="archive-item">
-                <h3>{{ _('Correspondances') }}</h3>
-                <p>{{ _('Parcourez une sélection de correspondances entre Bellettriens et avec d\'autres sociétés d\'étudiants.') }}</p>
-                <a href="#" class="btn">{{ _('Consulter') }}</a>
-            </div>
-            
-            <div class="archive-item">
-                <h3>{{ _('Événements marquants') }}</h3>
-                <p>{{ _('Revivez les moments forts qui ont marqué l\'histoire de notre société au fil des années.') }}</p>
-                <a href="#" class="btn">{{ _('Consulter') }}</a>
-            </div>
-        </div>
-        
-        <div class="archives-note">
-            <h3>{{ _('Accès aux archives complètes') }}</h3>
-            <p>{{ _('Les archives présentées sur ce site ne constituent qu\'une sélection de notre patrimoine. Pour accéder à l\'ensemble de nos archives ou pour des recherches spécifiques, veuillez nous contacter via notre formulaire de contact.') }}</p>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}

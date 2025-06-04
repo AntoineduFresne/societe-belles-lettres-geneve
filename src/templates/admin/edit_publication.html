@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier une publication - Administration - Société de Belles-Lettres Genève{% endblock %}
+
+{% block admin_content %}
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Modifier une publication</h2>
+            <a href="{{ url_for('admin.publications') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Retour à la liste
+            </a>
+        </div>
+        
+        <form id="editPublicationForm" method="POST" enctype="multipart/form-data">
+            <input type="hidden" id="publicationId" name="publication_id" value="{{ publication.id if publication else '' }}">
+            
+            <div class="mb-3">
+                <label for="title" class="form-label">Titre</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ publication.title if publication else '' }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="author" class="form-label">Auteur</label>
+                <input type="text" class="form-control" id="author" name="author" value="{{ publication.author if publication else '' }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="summary" class="form-label">Résumé</label>
+                <textarea class="form-control" id="summary" name="summary" rows="3">{{ publication.summary if publication else '' }}</textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="file" class="form-label">Fichier (PDF uniquement)</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" id="file" name="file" accept=".pdf">
+                    <span class="input-group-text">Fichier actuel : {{ publication.file_path.split('/')[-1] if publication else 'Aucun' }}</span>
+                </div>
+                <div class="form-text">Laissez vide pour conserver le fichier actuel.</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const editPublicationForm = document.getElementById('editPublicationForm');
+        if (editPublicationForm) {
+            editPublicationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('title').value;
+                const author = document.getElementById('author').value;
+                const file = document.getElementById('file').files[0];
+                
+                if (!title || !author) {
+                    alert('Veuillez remplir tous les champs obligatoires.');
+                    return;
+                }
+                
+                // Vérifier le type de fichier si un nouveau fichier est sélectionné
+                if (file && file.type !== 'application/pdf') {
+                    alert('Seuls les fichiers PDF sont acceptés.');
+                    return;
+                }
+                
+                // Ici, vous enverriez les données au serveur via une requête AJAX ou le formulaire
+                // Pour le moment, simulons une réponse positive
+                alert('Publication mise à jour avec succès !');
+                
+                // Rediriger vers la liste des publications
+                window.location.href = "{{ url_for('admin.publications') }}";
+            });
+        }
+    });
+</script>
+{% endblock %}
