@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ _('Accueil') }} - {{ _('Société de Belles-Lettres Genève') }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" style="background-image: url('{{ url_for('static', filename='img/background.jpg') }}');">
+    <div class="hero-content">
+        <h1>{{ _('Société de Belles-Lettres Genève') }}</h1>
+        <p>{{ _('Patriae · Amicitiae · Litteris') }}</p>
+        <a href="{{ url_for('presentation', lang=g.lang) }}" class="btn">{{ _('En savoir plus') }}</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>{{ _('Bienvenue') }}</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>{{ _('La société d\'étudiants de Belles-Lettres Genève, désirant ouvrir au grand public un nouvel accès à sa culture et à ses traditions, se présente ici même.') }}</p>
+                <p>{{ _('Belles-Lettres est une société d\'étudiants fondée pour rassembler des étudiants d\'universités suisses. Elle encourage l\'esprit critique sur le plan politique, économique, social et culturel du pays et cultive l\'amitié entre ses membres.') }}</p>
+                <a href="{{ url_for('histoire', lang=g.lang) }}" class="btn">{{ _('Découvrir notre histoire') }}</a>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='img/about.jpg') }}" alt="{{ _('Société de Belles-Lettres') }}">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section id="values">
+    <div class="container">
+        <div class="section-title">
+            <h2>{{ _('Nos valeurs') }}</h2>
+        </div>
+        <div class="values-container">
+            <div class="value-card">
+                <i class="fas fa-flag"></i>
+                <h3>{{ _('Patriae') }}</h3>
+                <p>{{ _('Engagement envers notre patrie et notre héritage culturel, avec un esprit critique et constructif.') }}</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-handshake"></i>
+                <h3>{{ _('Amicitiae') }}</h3>
+                <p>{{ _('Cultiver l\'amitié sincère et durable entre nos membres, au-delà des différences et des années.') }}</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-book"></i>
+                <h3>{{ _('Litteris') }}</h3>
+                <p>{{ _('Promotion de la culture, de la littérature et de l\'expression artistique sous toutes ses formes.') }}</p>
+            </div>
+        </div>
+        <div class="text-center" style="margin-top: 30px;">
+            <a href="{{ url_for('valeurs', lang=g.lang) }}" class="btn">{{ _('En savoir plus sur nos valeurs') }}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section id="events">
+    <div class="container">
+        <div class="section-title">
+            <h2>{{ _('Événements à venir') }}</h2>
+        </div>
+        <div class="events-container">
+            <!-- Les événements seront ajoutés dynamiquement -->
+            <p class="text-center">{{ _('Aucun événement programmé pour le moment.') }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Review Section Preview -->
+<section id="review-preview">
+    <div class="container">
+        <div class="section-title">
+            <h2>{{ _('La nouvelle revue de Belles-Lettres') }}</h2>
+        </div>
+        <div class="review-container">
+            <p>{{ _('Découvrez notre revue, où les membres ajoutent des essais, des textes et des œuvres sous forme de PDF. Ces textes sont une expression de beauté et d\'idées, sans prétention scientifique ou littéraire.') }}</p>
+            <div class="text-center" style="margin-top: 30px;">
+                <a href="{{ url_for('revue', lang=g.lang) }}" class="btn">{{ _('Accéder à la revue') }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

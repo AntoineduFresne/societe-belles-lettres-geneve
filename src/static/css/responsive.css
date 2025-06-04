@@ -1,0 +1,159 @@
+/* Styles pour la responsivité */
+
+/* Tablettes */
+@media (max-width: 992px) {
+  .header-container {
+    padding: 0 15px;
+  }
+  
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+  
+  .about-content {
+    flex-direction: column;
+  }
+  
+  .about-text, .about-image {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+  
+  .timeline::after {
+    left: 31px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  
+  .timeline-item.left::after, .timeline-item.right::after {
+    left: 21px;
+  }
+  
+  .timeline-item.right {
+    left: 0;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  header {
+    padding: 10px 0;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  .logo-text {
+    font-size: 1.2rem;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  nav {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 80%;
+    height: calc(100vh - 70px);
+    background-color: var(--dark-color);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+  }
+  
+  nav.active {
+    left: 0;
+  }
+  
+  nav ul {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  nav ul li {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+  
+  .language-switcher {
+    margin-left: 0;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  section {
+    padding: 60px 0;
+  }
+  
+  .section-title {
+    margin-bottom: 30px;
+  }
+  
+  .values-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .value-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .contact-container {
+    flex-direction: column;
+  }
+  
+  .contact-info, .contact-form {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+  }
+  
+  .footer-section {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+/* Petits mobiles */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ _('Erreur 404') }} - {{ _('Société de Belles-Lettres Genève') }}{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="container">
+        <div class="error-content">
+            <h1>404</h1>
+            <h2>{{ _('Page non trouvée') }}</h2>
+            <p>{{ _('La page que vous recherchez n\'existe pas ou a été déplacée.') }}</p>
+            <a href="{{ url_for('index', lang=g.lang) }}" class="btn">{{ _('Retour à l\'accueil') }}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

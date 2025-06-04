@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ _('Valeurs') }} - {{ _('Société de Belles-Lettres Genève') }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" style="background-image: url('{{ url_for('static', filename='img/values-bg.jpg') }}');">
+    <div class="hero-content">
+        <h1>{{ _('Nos Valeurs') }}</h1>
+        <p>{{ _('Patriae · Amicitiae · Litteris') }}</p>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section id="values-detail">
+    <div class="container">
+        <div class="section-title">
+            <h2>{{ _('Les valeurs de Belles-Lettres') }}</h2>
+        </div>
+        
+        <div class="values-intro">
+            <p>{{ _('La Société de Belles-Lettres Genève s\'articule autour de trois valeurs fondamentales qui guident nos actions et notre esprit depuis notre fondation. Ces valeurs, exprimées dans notre devise latine "Patriae · Amicitiae · Litteris", sont au cœur de notre identité et de notre mission.') }}</p>
+        </div>
+        
+        <div class="value-section">
+            <div class="value-header">
+                <i class="fas fa-flag"></i>
+                <h3>{{ _('Patriae (La Patrie)') }}</h3>
+            </div>
+            <div class="value-content">
+                <p>{{ _('Notre attachement à la patrie ne se traduit pas par un nationalisme étroit, mais par un engagement profond envers notre héritage culturel et nos traditions. Nous cultivons un esprit critique et constructif sur les questions politiques, économiques et sociales qui façonnent notre pays.') }}</p>
+                
+                <p>{{ _('Cet engagement se manifeste par des débats, des conférences et des discussions où chaque membre est encouragé à développer sa propre réflexion sur les enjeux contemporains, tout en respectant la diversité des opinions.') }}</p>
+                
+                <p>{{ _('Être Bellettrien, c\'est participer activement à la vie intellectuelle de notre société, en portant un regard à la fois critique et bienveillant sur notre patrie et ses institutions.') }}</p>
+            </div>
+        </div>
+        
+        <div class="value-section">
+            <div class="value-header">
+                <i class="fas fa-handshake"></i>
+                <h3>{{ _('Amicitiae (L\'Amitié)') }}</h3>
+            </div>
+            <div class="value-content">
+                <p>{{ _('L\'amitié est le ciment qui unit les membres de Belles-Lettres à travers les générations. Nous cultivons des liens sincères et durables qui transcendent les différences d\'âge, de formation et d\'opinions.') }}</p>
+                
+                <p>{{ _('Nos conciliabules, nos rencontres et nos traditions communes créent un espace où l\'amitié peut s\'épanouir dans un esprit de camaraderie et de respect mutuel. Cette fraternité s\'étend bien au-delà des années d\'études et accompagne les Bellettriens tout au long de leur vie.') }}</p>
+                
+                <p>{{ _('L\'amitié bellettrienne, c\'est aussi l\'art de la conversation, du débat courtois et de l\'échange intellectuel dans une atmosphère de convivialité et de bienveillance.') }}</p>
+            </div>
+        </div>
+        
+        <div class="value-section">
+            <div class="value-header">
+                <i class="fas fa-book"></i>
+                <h3>{{ _('Litteris (Les Lettres)') }}</h3>
+            </div>
+            <div class="value-content">
+                <p>{{ _('Les Lettres représentent notre attachement à la culture, à la littérature et à l\'expression artistique sous toutes ses formes. Nous encourageons la création, la réflexion et le partage des connaissances dans un esprit d\'ouverture et de curiosité intellectuelle.') }}</p>
+                
+                <p>{{ _('À travers notre revue, nos lectures publiques et nos activités culturelles, nous offrons à nos membres un espace d\'expression et de découverte qui complète leur formation académique et enrichit leur parcours personnel.') }}</p>
+                
+                <p>{{ _('L\'esprit bellettrien se nourrit de cette passion pour les Lettres, qui n\'est pas une simple érudition, mais une manière vivante et joyeuse d\'aborder la culture et de la partager.') }}</p>
+            </div>
+        </div>
+        
+        <div class="values-conclusion">
+            <h3>{{ _('L\'esprit bellettrien') }}</h3>
+            <p>{{ _('L\'esprit bellettrien est composé de fantaisie et de gaîté, tissé de lumière et filé de rayon, parlant français mais détestant l\'écolier limousin, prétendant simplement demeurer fidèle au verbe et aux mœurs de son pays, il offre cette particularité qu\'il n\'est d\'aucune utilité pratique. Il n\'obéit à nulle fin immédiate. Il ne sert à rien, comme ne servent à rien ces lettres qu\'il cultive, que le passé appelait belles, et que les modernes ingénieurs souhaiteraient rayer de nos programmes.') }}</p>
+            
+            <p>{{ _('L\'esprit bellettrien est comme l\'esprit qui aide à tout : il ne suffit à rien. Il ne résout pas l\'énigme de notre destinée. Il se montre impuissant devant le deuil et devant le drame dont notre mystère est borné. La réalité éternelle le dépasse. Du moins est-il un condiment de la vie.') }}</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
